@@ -15,6 +15,12 @@
 - 終了<br>
   `docker-compose stop`
 
+## static ファイル生成
+
+setting.py の修正後にコマンド実行
+ただし、Dockerfile 内で、毎回起動時に実行できるようにする方がよいかも。
+`docker-compose run web python manage.py collectstatic`
+
 # 初回以降の毎回の操作方法
 
 - 起動<br>
