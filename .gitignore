@@ -1,3 +1,16 @@
 .env
 secret.md
 venv
+api/__pycache__/*
+api/migrations/__pycache__/*
+config/__pycache__/*
+config/settings/__pycache__/*
+core/__pycache__/*
+core/migrations/__pycache__/*
+core/migrations/0*.py
+static
+users/__pycache__/*
+users/migrations/__pycache__/*
+users/migrations/0*.py
+
+
