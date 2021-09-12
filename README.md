@@ -26,6 +26,7 @@
 
 - superuser の作成 <br>
   `docker-compose run web python manage.py createsuperuser`
+  
 - 終了<br>
   `docker-compose stop`
 
@@ -50,6 +51,9 @@ setting.py の修正後にコマンド実行
 
 - 停止 <br>
   `docker-compose stop`
+
+- テストの実行 <br>
+  `docker-compose run web python manage.py test`
 
 # DBの確認や操作
 
