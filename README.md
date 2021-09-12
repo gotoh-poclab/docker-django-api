@@ -1,5 +1,19 @@
 # docker_django
 
+# 使用技術
+- [Django](https://docs.djangoproject.com/)
+  - Django（ジャンゴ）は、Pythonで実装されたWebアプリケーションフレームワーク。
+- [Django REST framework](https://www.django-rest-framework.org/)
+  - PythonのWebアプリケーションフレームワークであるDjangoを使ってAPIを開発するために利用されるライブラリ
+- [Docker](https://www.docker.com/)
+  - コンテナ仮想化を用いてアプリケーションを開発・配置・実行するためのオープンソースソフトウェアあるいはオープンプラットフォーム。開発環境の構築のためdocker-composeを利用しています。
+- [PostgreSQL](https://www.postgresql.org/)
+  - 拡張性とSQL準拠を強調するフリーでオープンソースの関係データベース管理システム
+- [Google Cloud Platform（GCP）](https://cloud.google.com/)
+  - Google がクラウド上で提供するサービス群の総称。ここにデプロイすることを前提に作成
+  
+使用技術を組み合わせて、開発する上での基本的な技術検証を行っていきたい。
+
 # 初回
 
 - 起動<br>
@@ -36,6 +50,73 @@ setting.py の修正後にコマンド実行
 
 - 停止 <br>
   `docker-compose stop`
+
+# DBの確認や操作
+
+
+データベース接続
+```
+docker-compose exec db psql -h 127.0.0.1 -p 5432 -U postgres -d postgres
+```
+
+接続完了したら表示される内容
+```
+psql (13.4 (Debian 13.4-1.pgdg100+1))
+Type "help" for help.
+
+postgres=# 
+```
+
+
+テーブル一覧
+```
+postgres=# \dt;
+```
+
+テーブル構造
+```
+# 汎用的な記載方法
+\d [テーブル名];
+```
+```
+\d core_todomodel;
+```
+
+データ登録
+```
+INSERT INTO core_todomodel (id, text, "registrationTimeAt") VALUES (1, 'test', '2020-9-12 9:00:00');
+commit;
+```
+
+データ検索
+```
+select * from core_todomodel;
+```
+→一件表示される
+
+指定したテーブルのデータ初期化
+```
+TRUNCATE TABLE core_todomodel;
+```
+
+データ検索
+```
+select * from core_todomodel;
+```
+→データが０件なので、「0 rows」と表示される
+
+# dockerfile だけで起動できるかを確認する。
+
+test のところは任意
+
+`docker build -t test .`
+
+`docker run -p 8000:8000 test`
+
+- 立ち上がっている docker の確認<br>
+  `docker ps `
+- 立ち上がっている docker を止める<br>
+  `docker stop $Container ID `
 
 # 最初から作成する方法
 
@@ -120,20 +201,4 @@ class CustomUser(AbstractUser):
 8. startapp api<br>
    `docker-compose run web django-admin startapp api`
 
-#その他のメモ(起動確認など)。
 
-Cloud Run 環境での Django の実行を見て、勉強する。
-https://cloud.google.com/python/django/run#macos-64-bit
-
-# dockerfile だけで起動できるかを確認する。
-
-test のところは任意
-
-`docker build -t test .`
-
-`docker run -p 8000:8000 test`
-
-- 立ち上がっている docker の確認<br>
-  `docker ps `
-- 立ち上がっている docker を止める<br>
-  `docker stop $Container ID `
