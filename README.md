@@ -55,6 +55,10 @@ setting.py の修正後にコマンド実行
 - テストの実行 <br>
   `docker-compose run web python manage.py test`
 
+- 初期データの追加<br>
+  `docker-compose run web python manage.py loaddata fixtures/initial_data.yaml`
+
+
 # DBの確認や操作
 
 

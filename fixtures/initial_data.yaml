@@ -1,0 +1,9 @@
+- model: core.TodoModel
+  fields:
+    text: テスト投稿１
+    registrationTimeAt: 2012-09-04 06:00Z
+
+- model: core.TodoModel
+  fields:
+    text: テスト投稿2
+    registrationTimeAt: 2012-09-04 07:00Z
