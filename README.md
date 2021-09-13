@@ -209,4 +209,14 @@ class CustomUser(AbstractUser):
 8. startapp api<br>
    `docker-compose run web django-admin startapp api`
 
+9. fixturesで初期データの導入<br>
+yaml形式の方が見やすいので、pythonでyamlが読めるように、以下をインストールする必要がある。<br>
+`pip install pyyaml` <br>
+requirements.txtに pyyamlを加える。<br>
+書き方などは以下を参照
+https://djangobrothers.com/blogs/fixture/
 
+
+10. django-environで環境変数を管理してみる
+
+https://e-tec-memo.herokuapp.com/article/172/
