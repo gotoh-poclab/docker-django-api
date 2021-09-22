@@ -63,6 +63,21 @@ setting.py の修正後にコマンド実行
 
 
 データベース接続
+
+postgresで作成の場合
+
+```
+docker-compose exec db bash
+```
+を入力して
+```
+mysql -u root -p
+```
+パスワードは `root`で入れる。
+
+
+
+以下は、postgresで作成場合
 ```
 docker-compose exec db psql -h 127.0.0.1 -p 5432 -U postgres -d postgres
 ```
@@ -220,3 +235,15 @@ https://djangobrothers.com/blogs/fixture/
 10. django-environで環境変数を管理してみる
 
 https://e-tec-memo.herokuapp.com/article/172/
+
+
+# postgreの場合には、mysqlclientを以下に変更
+```
+psycopg2-binary
+psycopg2
+```
+
+# 参考記事
+
+- Django+MySQLの開発環境をdocker-composeで構築する
+https://qiita.com/bakupen/items/f23ce3d2325b4491a2dd

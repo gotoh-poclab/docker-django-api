@@ -3,7 +3,6 @@ djangorestframework
 django-cors-headers
 django-filter
 django-environ
-psycopg2-binary
-psycopg2
 PyYAML
 django-environ
+mysqlclient
