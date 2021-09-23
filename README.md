@@ -7,8 +7,8 @@
   - PythonのWebアプリケーションフレームワークであるDjangoを使ってAPIを開発するために利用されるライブラリ
 - [Docker](https://www.docker.com/)
   - コンテナ仮想化を用いてアプリケーションを開発・配置・実行するためのオープンソースソフトウェアあるいはオープンプラットフォーム。開発環境の構築のためdocker-composeを利用しています。
-- [PostgreSQL](https://www.postgresql.org/)
-  - 拡張性とSQL準拠を強調するフリーでオープンソースの関係データベース管理システム
+- [MySQL](https://www.mysql.com/jp/)
+  - オープンソースのリレーショナルデータベース管理システム
 - [Google Cloud Platform（GCP）](https://cloud.google.com/)
   - Google がクラウド上で提供するサービス群の総称。ここにデプロイすることを前提に作成
   
@@ -18,6 +18,10 @@
 
 - 起動<br>
   `docker-compose up -d`
+
+- DBに比べて、WEBの起動が遅い時はWEBをリスタート<br>
+ `docker-compose restart web`
+
 - migrtions<br>
   `docker-compose run web python manage.py makemigrations `
 
@@ -63,6 +67,21 @@ setting.py の修正後にコマンド実行
 
 
 データベース接続
+
+mysqlで作成の場合
+
+```
+docker-compose exec db bash
+```
+を入力して
+```
+mysql -u root -p
+```
+パスワードは `root`で入れる。
+
+
+
+以下は、postgresで作成場合
 ```
 docker-compose exec db psql -h 127.0.0.1 -p 5432 -U postgres -d postgres
 ```
@@ -209,4 +228,26 @@ class CustomUser(AbstractUser):
 8. startapp api<br>
    `docker-compose run web django-admin startapp api`
 
+9. fixturesで初期データの導入<br>
+yaml形式の方が見やすいので、pythonでyamlが読めるように、以下をインストールする必要がある。<br>
+`pip install pyyaml` <br>
+requirements.txtに pyyamlを加える。<br>
+書き方などは以下を参照
+https://djangobrothers.com/blogs/fixture/
 
+
+10. django-environで環境変数を管理してみる
+
+https://e-tec-memo.herokuapp.com/article/172/
+
+
+# postgreの場合には、mysqlclientを以下に変更
+```
+psycopg2-binary
+psycopg2
+```
+
+# 参考記事
+
+- Django+MySQLの開発環境をdocker-composeで構築する
+https://qiita.com/bakupen/items/f23ce3d2325b4491a2dd

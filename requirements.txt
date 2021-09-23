@@ -1,8 +1,8 @@
-Django==3.2.4
+Django==3.2.5
 djangorestframework
 django-cors-headers
 django-filter
 django-environ
-psycopg2-binary
-psycopg2
 PyYAML
+django-environ
+mysqlclient
