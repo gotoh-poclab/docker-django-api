@@ -7,8 +7,8 @@
   - PythonのWebアプリケーションフレームワークであるDjangoを使ってAPIを開発するために利用されるライブラリ
 - [Docker](https://www.docker.com/)
   - コンテナ仮想化を用いてアプリケーションを開発・配置・実行するためのオープンソースソフトウェアあるいはオープンプラットフォーム。開発環境の構築のためdocker-composeを利用しています。
-- [PostgreSQL](https://www.postgresql.org/)
-  - 拡張性とSQL準拠を強調するフリーでオープンソースの関係データベース管理システム
+- [MySQL](https://www.mysql.com/jp/)
+  - オープンソースのリレーショナルデータベース管理システム
 - [Google Cloud Platform（GCP）](https://cloud.google.com/)
   - Google がクラウド上で提供するサービス群の総称。ここにデプロイすることを前提に作成
   
@@ -18,6 +18,10 @@
 
 - 起動<br>
   `docker-compose up -d`
+
+- DBに比べて、WEBの起動が遅い時はWEBをリスタート<br>
+ `docker-compose restart web`
+
 - migrtions<br>
   `docker-compose run web python manage.py makemigrations `
 
@@ -64,7 +68,7 @@ setting.py の修正後にコマンド実行
 
 データベース接続
 
-postgresで作成の場合
+mysqlで作成の場合
 
 ```
 docker-compose exec db bash
